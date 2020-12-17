@@ -16,15 +16,18 @@ wepy.use(promisify);
 
 
 wepy.app({
-  onLaunch() {
+  async onLaunch() {
     // wx.login({
     //   success(res){
     //     console.log('wx_code',res)
     //   }
     // })
-    wepy.wx.login().then(res => {
-      console.log('login1: ',res)
-    })
+    // wx.login().then(res => {
+    //   console.log('login1: ',res)
+    // })
+
+    const res = await wx.login();
+    console.log('login-async',res)
   },
 
   methods: {
@@ -36,12 +39,13 @@ wepy.app({
 {
     pages: [
       'pages/index',
-      'pages/user'
+      'pages/user',
+      'pages/auth/login'
     ],
     window: {
       backgroundTextStyle: 'light',
       navigationBarBackgroundColor: '#fff',
-      navigationBarTitleText: 'WeChat',
+      navigationBarTitleText: 'LaraBBS',
       navigationBarTextStyle: 'black'
     },
     tabBar: {
